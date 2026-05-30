@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush Baravkar — Sustainable Energy Systems</title>
+<meta name="description" content="M.Sc. Sustainable Energy Systems @ TU Dortmund. Solar PV, Grid Integration, Energy Markets. Open to Werkstudent roles in Germany.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --ink: #1a1f1a;
+    --ink-soft: #4a524a;
+    --ink-mute: #8a8a7a;
+    --moss: #2d4a2b;
+    --line: #d4ccb8;
+    --line-soft: #e2dcc9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 14;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* === NAV === */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245, 241, 232, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .nav-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    transition: color 0.2s;
+    letter-spacing: 0;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    background: transparent;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .lang-toggle button.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 80px 0 40px;
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .header-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  h1.name {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(48px, 6.5vw, 76px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .tagline {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 560px;
+  }
+
+  .header-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .photo-thumb {
+    width: 110px;
+    height: 130px;
+    background: linear-gradient(135deg, var(--moss) 0%, #4a7548 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg);
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    border: 1px solid var(--line);
+  }
+
+  .photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .header-icons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 13px;
+  }
+
+  .icon-btn:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .icon-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* === SECTION === */
+  section {
+    padding: 50px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  h2.sec-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 40px;
+  }
+
+  /* === ABOUT === */
+  .about-text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 720px;
+  }
+
+  .about-text p {
+    margin-bottom: 16px;
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* === TWO COLUMN LISTS === */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    margin-top: 32px;
+  }
+
+  .col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .dash-list {
+    list-style: none;
+  }
+
+  .dash-list li {
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  .dash-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--ink-mute);
+  }
+
+  /* === TIMELINE / ENTRY === */
+  .entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .entry-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    padding-top: 4px;
+  }
+
+  .entry-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+
+  .entry-org {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .entry-desc {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .entry-desc li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .entry-desc li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--ink-mute);
+  }
+
+  /* === PROJECT ENTRIES === */
+  .project-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .project-entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+
+  .tag:not(:last-child)::after {
+    content: ' ·';
+  }
+
+  /* === PUBLICATION === */
+  .pub-block {
+    padding: 24px 28px;
+    border-left: 2px solid var(--moss);
+    background: rgba(45, 74, 43, 0.04);
+    margin-top: 24px;
+  }
+
+  .pub-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .pub-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .pub-meta {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* === SKILLS CLEAN === */
+  .skills-clean {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .skill-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .skill-row .col-label {
+    margin-bottom: 0;
+    padding-top: 4px;
+  }
+
+  .skill-text {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  /* === CERTS LIST === */
+  .cert-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cert-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .cert-item:last-child { border-bottom: none; }
+
+  .cert-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .cert-org {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* === CONTACT === */
+  .contact-list {
+    list-style: none;
+  }
+
+  .contact-list li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .contact-list li:last-child { border-bottom: none; }
+
+  .contact-list .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    padding-top: 2px;
+  }
+
+  .contact-list a {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .contact-list a:hover {
+    border-color: var(--ink);
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--moss);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 40px 0 50px;
+    border-top: 1px solid var(--line-soft);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* === ANIMATIONS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 720px) {
+    .container { padding: 0 24px; }
+    .nav-inner { padding: 14px 24px; gap: 12px; }
+    .nav-links { gap: 16px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11px; }
+    header { padding: 50px 0 30px; }
+    .header-grid { grid-template-columns: 1fr; gap: 28px; }
+    .header-photo { align-items: flex-start; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .entry, .project-entry, .cert-item, .contact-list li {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .entry-meta { font-size: 10px; }
+    section { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#about" data-en="about" data-de="über">about</a></li>
+      <li><a href="#experience" data-en="experience" data-de="erfahrung">experience</a></li>
+      <li><a href="#education" data-en="education" data-de="ausbildung">education</a></li>
+      <li><a href="#projects" data-en="projects" data-de="projekte">projects</a></li>
+      <li><a href="#skills" data-en="skills" data-de="kenntnisse">skills</a></li>
+      <li><a href="#certs" data-en="certificates" data-de="zertifikate">certificates</a></li>
+      <li><a href="#contact" data-en="contact" data-de="kontakt">contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="lang-en" class="active" type="button">EN</button>
+      <button id="lang-de" type="button">DE</button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="header-grid">
+      <div>
+        <div class="header-label" data-en="PORTFOLIO" data-de="PORTFOLIO">PORTFOLIO</div>
+        <h1 class="name">Piyush Baravkar</h1>
+        <p class="tagline" data-en="Solar PV professional transitioning into energy systems and grid integration. Currently pursuing M.Sc. Sustainable Energy Systems at TU Dortmund. Seeking a Werkstudent or internship role in the electrification and energy transition sector." data-de="Solar-PV-Fachkraft auf dem Weg zu Energiesystemen und Netzintegration. Aktuell M.Sc. Nachhaltige Energiesysteme an der TU Dortmund. Suche eine Werkstudenten- oder Praktikumsstelle im Bereich Elektrifizierung und Energiewende.">
+          Solar PV professional transitioning into energy systems and grid integration. Currently pursuing M.Sc. Sustainable Energy Systems at TU Dortmund. Seeking a Werkstudent or internship role in the electrification and energy transition sector.
+        </p>
+      </div>
+      <div class="header-photo">
+        <div class="photo-thumb">PB</div>
+        <div class="header-icons">
+          <a href="https://linkedin.com/in/piyushbaravkar" target="_blank" class="icon-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+          </a>
+          <a href="#cv" id="cv-download" class="icon-btn" aria-label="Download CV">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </a>
+          <a href="mailto:piyushbaravkar04@gmail.com" class="icon-btn" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-num">01</div>
+    <h2 class="sec-title reveal" data-en="About" data-de="Über mich">About</h2>
+    <div class="about-text reveal">
+      <p data-en="<strong>Solar PV professional</strong> transitioning into energy systems and grid integration, with hands-on experience managing 100 kW+ renewable installations and technical project execution. Proven track record in data-driven system optimization, inverter and grid-tied system commissioning, stakeholder coordination, and cross-functional team leadership." data-de="<strong>Solar-PV-Fachkraft</strong> auf dem Weg zu Energiesystemen und Netzintegration — mit praktischer Erfahrung in der Abwicklung von über 100 kW erneuerbarer Anlagen und technischer Projektumsetzung. Nachweisliche Erfolge in datenbasierter Systemoptimierung, Wechselrichter- und Netzeinspeisungs-Inbetriebnahme, Stakeholder-Koordination und teamübergreifender Führung.">
+        <strong>Solar PV professional</strong> transitioning into energy systems and grid integration, with hands-on experience managing 100 kW+ renewable installations and technical project execution. Proven track record in data-driven system optimization, inverter and grid-tied system commissioning, stakeholder coordination, and cross-functional team leadership.
+      </p>
+      <p data-en="Currently pursuing my <strong>M.Sc. Sustainable Energy Systems</strong> at TU Dortmund to expand expertise from technical operations into energy markets and commercial optimization." data-de="Derzeit absolviere ich meinen <strong>M.Sc. Nachhaltige Energiesysteme</strong> an der TU Dortmund, um mein Wissen aus dem technischen Betrieb auf Energiemärkte und kommerzielle Optimierung zu erweitern.">
+        Currently pursuing my <strong>M.Sc. Sustainable Energy Systems</strong> at TU Dortmund to expand expertise from technical operations into energy markets and commercial optimization.
+      </p>
+      <p data-en="Seeking an <strong>internship or working student role</strong> in the electrification and energy transition sector to apply technical and analytical expertise to real-world challenges." data-de="Auf der Suche nach einer <strong>Praktikums- oder Werkstudentenstelle</strong> im Bereich Elektrifizierung und Energiewende, um technisches und analytisches Know-how an realen Aufgaben einzusetzen.">
+        Seeking an <strong>internship or working student role</strong> in the electrification and energy transition sector to apply technical and analytical expertise to real-world challenges.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="sec-num">02</div>
+    <h2 class="sec-title reveal" data-en="Experience" data-de="Erfahrung">Experience</h2>
+
+    <div class="entry reveal">
+      <div class="entry-meta">Jul 2024 — Mar 2025<br>Pune, IN</div>
+      <div>
+        <div class="entry-title" data-en="Intern to Executive — Project Execution &amp; Design" data-de="Praktikant bis Fachkraft — Projektabwicklung &amp; Design">Intern to Executive — Project Execution &amp; Design</div>
+        <div class="entry-org">ZTRIC India Pvt. Ltd.</div>
+        <div class="entry-desc">
+          <ul>
+            <li data-en="Delivered 4 solar PV projects (103 kW total) end-to-end, supervising 6–12 member teams and €900+ procurement; all on schedule, zero safety incidents." data-de="Lieferte 4 Solar-PV-Projekte (insgesamt 103 kW) komplett aus, betreute Teams mit 6–12 Personen und einen Einkauf von über 900 €; alle termingerecht und ohne Sicherheitsvorfälle.">Delivered 4 solar PV projects (103 kW total) end-to-end, supervising 6–12 member teams and €900+ procurement; all on schedule, zero safety incidents.</li>
+            <li data-en="Redesigned rooftop layouts in AutoCAD, increasing capacity from 5 kW to 8 kW (+60%) through space-utilization analysis." data-de="Re-designte Dach-Layouts in AutoCAD und steigerte die Kapazität von 5 kW auf 8 kW (+60 %) durch Flächennutzungsanalyse.">Redesigned rooftop layouts in AutoCAD, increasing capacity from 5 kW to 8 kW (+60%) through space-utilization analysis.</li>
+            <li data-en="Performed O&amp;M on installations up to 110 kW; resolved inverter issues on grid-tied and ZED-integrated systems within 24–48 hours, maintaining 99%+ uptime." data-de="Wartung &amp; Betrieb von Anlagen bis 110 kW; behob Wechselrichter-Probleme an netzgekoppelten und ZED-integrierten Systemen in 24–48 Stunden und sicherte über 99 % Verfügbarkeit.">Performed O&amp;M on installations up to 110 kW; resolved inverter issues on grid-tied and ZED-integrated systems within 24–48 hours, maintaining 99%+ uptime.</li>
+            <li data-en="Coordinated 5–6 suppliers for cost-effective sourcing; resolved supply-chain delays within 1 week." data-de="Koordinierte 5–6 Lieferanten für kostengünstige Beschaffung; behob Lieferketten-Verzögerungen innerhalb einer Woche.">Coordinated 5–6 suppliers for cost-effective sourcing; resolved supply-chain delays within 1 week.</li>
+            <li data-en="Prepared weekly status reports for 5+ stakeholders, tracking capacity factor, generation vs. forecast, and maintenance activities." data-de="Erstellte wöchentliche Statusberichte für über 5 Stakeholder mit Kapazitätsfaktor, Erzeugung vs. Prognose und Wartungsaktivitäten.">Prepared weekly status reports for 5+ stakeholders, tracking capacity factor, generation vs. forecast, and maintenance activities.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="entry-meta">Jan 2024 — Feb 2024<br>Pune, IN</div>
+      <div>
+        <div class="entry-title" data-en="Business Development Intern" data-de="Praktikant Business Development">Business Development Intern</div>
+        <div class="entry-org">Choice TechLab Solutions Pvt. Ltd.</div>
+        <div class="entry-desc" data-en="Generated 40% more qualified leads through market research and cold outreach; converted 25% into active client engagements; maintained a CRM database of 200+ prospects." data-de="Generierte 40 % mehr qualifizierte Leads durch Marktforschung und Kaltakquise; wandelte 25 % der Leads in aktive Kundenbeziehungen um; pflegte eine CRM-Datenbank mit über 200 Interessenten.">
+          Generated 40% more qualified leads through market research and cold outreach; converted 25% into active client engagements; maintained a CRM database of 200+ prospects.
+        </div>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="entry-meta">Jan 2023 — Apr 2023<br>Pune, IN</div>
+      <div>
+        <div class="entry-title" data-en="Intern — CNC Machinery &amp; Automation" data-de="Praktikant — CNC-Maschinen &amp; Automation">Intern — CNC Machinery &amp; Automation</div>
+        <div class="entry-org">Technosys Automation</div>
+        <div class="entry-desc">
+          <ul>
+            <li data-en="Designed, wired, and assembled 6+ CNC control panels with a 4-member team; introduced batch workflow cutting build time 20% (10→8 days) and boosting efficiency 40%." data-de="Entwarf, verdrahtete und montierte über 6 CNC-Schaltschränke im 4-Personen-Team; führte Batch-Workflow ein und reduzierte die Aufbauzeit um 20 % (10→8 Tage), Effizienz +40 %.">Designed, wired, and assembled 6+ CNC control panels with a 4-member team; introduced batch workflow cutting build time 20% (10→8 days) and boosting efficiency 40%.</li>
+            <li data-en="Achieved 20–30% material cost savings through precision cutting and cable tray reuse." data-de="Erzielte 20–30 % Materialkosten-Einsparungen durch präzises Zuschneiden und Wiederverwendung von Kabelkanälen.">Achieved 20–30% material cost savings through precision cutting and cable tray reuse.</li>
+            <li data-en="Hands-on with PLC programming, ladder logic, and Siemens/Fanuc drives for CNC automation." data-de="Praktische Erfahrung mit SPS-Programmierung, Kontaktplan und Siemens-/Fanuc-Antrieben für die CNC-Automation.">Hands-on with PLC programming, ladder logic, and Siemens/Fanuc drives for CNC automation.</li>
+            <li data-en="Conducted 12+ site visits to troubleshoot electrical faults and minimize downtime for 5–6 clients." data-de="Führte über 12 Außeneinsätze durch, um elektrische Störungen zu beheben und Ausfallzeiten für 5–6 Kunden zu reduzieren.">Conducted 12+ site visits to troubleshoot electrical faults and minimize downtime for 5–6 clients.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="sec-num">03</div>
+    <h2 class="sec-title reveal" data-en="Education" data-de="Ausbildung">Education</h2>
+
+    <div class="entry reveal">
+      <div class="entry-meta">Apr 2025 — Mar 2027<br>Dortmund, DE</div>
+      <div>
+        <div class="entry-title" data-en="M.Sc. Sustainable Energy Systems" data-de="M.Sc. Nachhaltige Energiesysteme">M.Sc. Sustainable Energy Systems</div>
+        <div class="entry-org">Technische Universität Dortmund</div>
+        <div class="entry-desc" data-en="Coursework in Energy Markets &amp; Trading, Renewable Energy Systems, Energy Economics, Grid Integration, and Power Systems Analysis." data-de="Studieninhalte: Energiemärkte &amp; Handel, Erneuerbare Energiesysteme, Energiewirtschaft, Netzintegration und Analyse elektrischer Energiesysteme.">
+          Coursework in Energy Markets &amp; Trading, Renewable Energy Systems, Energy Economics, Grid Integration, and Power Systems Analysis.
+        </div>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="entry-meta">Jun 2020 — Jun 2024<br>Pune, IN</div>
+      <div>
+        <div class="entry-title" data-en="B.E. Electronics &amp; Telecommunication" data-de="B.E. Elektronik &amp; Telekommunikation">B.E. Electronics &amp; Telecommunication</div>
+        <div class="entry-org" data-en="International Institute of Information Technology, Pune, affiliated to Savitribai Phule Pune University" data-de="International Institute of Information Technology, Pune, angegliedert an die Savitribai Phule Pune University">International Institute of Information Technology, Pune, affiliated to Savitribai Phule Pune University</div>
+        <div class="entry-desc" data-en="Final CGPA 8.28 / 10. Co-authored research paper on CNN-based multilingual sign language detection (NCETES 2024, ISBN 978-81-969655-1-8)." data-de="Abschlussnote 8,28 / 10 CGPA. Co-Autor einer Forschungsarbeit über CNN-basierte mehrsprachige Gebärdenspracherkennung (NCETES 2024, ISBN 978-81-969655-1-8).">
+          Final CGPA 8.28 / 10. Co-authored research paper on CNN-based multilingual sign language detection (NCETES 2024, ISBN 978-81-969655-1-8).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="sec-num">04</div>
+    <h2 class="sec-title reveal" data-en="Projects" data-de="Projekte">Projects</h2>
+
+    <div class="project-entry reveal">
+      <div class="entry-meta">2025<br>ZTRIC India</div>
+      <div>
+        <div class="entry-title" data-en="Solar PV Performance Analysis &amp; Monitoring" data-de="Solar-PV-Performance-Analyse &amp; Monitoring">Solar PV Performance Analysis &amp; Monitoring</div>
+        <div class="entry-org">ZTRIC India Pvt. Ltd.</div>
+        <div class="entry-desc" data-en="Analyzed generation data from 10+ installed PV systems to validate real-world output against design expectations. Built monitoring dashboards tracking daily generation, capacity factor, and system health. Identified underperforming arrays — corrective maintenance recovered 5–8% in lost generation." data-de="Analysierte Erzeugungsdaten von über 10 installierten PV-Anlagen, um die reale Leistung mit den Planvorgaben abzugleichen. Entwickelte Monitoring-Dashboards für Tageserzeugung, Kapazitätsfaktor und Anlagenzustand. Identifizierte leistungsschwache Anlagen — gezielte Wartung gewann 5–8 % der verlorenen Erzeugung zurück.">
+          Analyzed generation data from 10+ installed PV systems to validate real-world output against design expectations. Built monitoring dashboards tracking daily generation, capacity factor, and system health. Identified underperforming arrays — corrective maintenance recovered 5–8% in lost generation.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Excel / VBA</span>
+          <span class="tag">PV Analytics</span>
+          <span class="tag">Dashboards</span>
+          <span class="tag">Capacity Factor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-entry reveal">
+      <div class="entry-meta">2024<br>Research</div>
+      <div>
+        <div class="entry-title" data-en="Multilingual Sign Language Detection" data-de="Mehrsprachige Gebärdenspracherkennung">Multilingual Sign Language Detection</div>
+        <div class="entry-org" data-en="Bachelor's Thesis · International Institute of Information Technology, Pune" data-de="Bachelorarbeit · International Institute of Information Technology, Pune">Bachelor's Thesis · International Institute of Information Technology, Pune</div>
+        <div class="entry-desc" data-en="Real-time sign language recognition using YOLOv5 with a React + TensorFlow.js front-end. Detects gestures across multiple sign languages to enable communication between hearing-impaired individuals and the wider community. Co-authored research paper." data-de="Echtzeit-Gebärdenspracherkennung mit YOLOv5 und einem React + TensorFlow.js-Frontend. Erkennt Gesten in mehreren Gebärdensprachen und ermöglicht die Kommunikation zwischen hörgeschädigten Menschen und der breiten Öffentlichkeit. Co-Autor der Forschungsarbeit.">
+          Real-time sign language recognition using YOLOv5 with a React + TensorFlow.js front-end. Detects gestures across multiple sign languages to enable communication between hearing-impaired individuals and the wider community. Co-authored research paper.
+        </div>
+        <div class="project-tags">
+          <span class="tag">YOLOv5</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">TensorFlow.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-entry reveal">
+      <div class="entry-meta">Jan — Apr 2024<br>Pune, IN</div>
+      <div>
+        <div class="entry-title" data-en="Fire Extinguisher Drone" data-de="Feuerlöschdrohne">Fire Extinguisher Drone</div>
+        <div class="entry-org" data-en="Smart India Hackathon 2023" data-de="Smart India Hackathon 2023">Smart India Hackathon 2023</div>
+        <div class="entry-desc" data-en="Team project developed for the Smart India Hackathon — an autonomous drone designed to detect and extinguish fires in hard-to-reach locations. Equipped with smoke and temperature sensors paired with an onboard fire suppression system. Contributed to the embedded system design, sensor integration, and flight control programming for autonomous operation." data-de="Teamprojekt für den Smart India Hackathon — eine autonome Drohne zur Erkennung und Bekämpfung von Bränden an schwer zugänglichen Orten. Ausgestattet mit Rauch- und Temperatursensoren sowie einem integrierten Feuerlöschsystem. Beitrag zum Design des eingebetteten Systems, zur Sensorintegration und zur Programmierung der Flugsteuerung für den autonomen Betrieb.">
+          Team project developed for the Smart India Hackathon — an autonomous drone designed to detect and extinguish fires in hard-to-reach locations. Equipped with smoke and temperature sensors paired with an onboard fire suppression system. Contributed to the embedded system design, sensor integration, and flight control programming for autonomous operation.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Embedded Systems</span>
+          <span class="tag">Autonomous Flight</span>
+          <span class="tag">Sensor Integration</span>
+          <span class="tag">Flight Control</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-entry reveal">
+      <div class="entry-meta">2022<br>Academic</div>
+      <div>
+        <div class="entry-title" data-en="Air Pollution Detector (MQ135 + Arduino)" data-de="Luftverschmutzungsdetektor (MQ135 + Arduino)">Air Pollution Detector (MQ135 + Arduino)</div>
+        <div class="entry-desc" data-en="IoT-based air quality monitor measuring NH₃, NOx, alcohol, benzene, and CO₂. Arduino-driven with Bluetooth transmission to a mobile app for real-time visualization." data-de="IoT-basierter Luftqualitätsmonitor zur Messung von NH₃, NOx, Alkohol, Benzol und CO₂. Arduino-gesteuert mit Bluetooth-Übertragung an eine mobile App für Echtzeit-Visualisierung.">
+          IoT-based air quality monitor measuring NH₃, NOx, alcohol, benzene, and CO₂. Arduino-driven with Bluetooth transmission to a mobile app for real-time visualization.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Arduino</span>
+          <span class="tag">IoT</span>
+          <span class="tag">Sensors</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-block reveal">
+      <div class="pub-label" data-en="PUBLICATION" data-de="PUBLIKATION">PUBLICATION</div>
+      <div class="pub-title">"Multilingual Sign Language Detection Using CNN"</div>
+      <div class="pub-meta" data-en='Chandel, Y., <strong>Baravkar, P.</strong>, Parkhe, K., Hande, S. (2024). Proceedings of NCETES / JCON-2024, Jaihind College of Engineering, in association with Savitribai Phule Pune University. ISBN 978-81-969655-1-8.' data-de='Chandel, Y., <strong>Baravkar, P.</strong>, Parkhe, K., Hande, S. (2024). Tagungsband NCETES / JCON-2024, Jaihind College of Engineering, in Zusammenarbeit mit der Savitribai Phule Pune University. ISBN 978-81-969655-1-8.'>
+        Chandel, Y., <strong>Baravkar, P.</strong>, Parkhe, K., Hande, S. (2024). Proceedings of NCETES / JCON-2024, Jaihind College of Engineering, in association with Savitribai Phule Pune University. ISBN 978-81-969655-1-8.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="sec-num">05</div>
+    <h2 class="sec-title reveal" data-en="Skills" data-de="Kenntnisse">Skills</h2>
+
+    <div class="skills-clean reveal">
+      <div class="skill-row">
+        <div class="col-label" data-en="ENERGY SYSTEMS" data-de="ENERGIESYSTEME">ENERGY SYSTEMS</div>
+        <div class="skill-text" data-en="Solar PV system design · Grid-tied systems · Zero Export Device (ZED) integration · Inverter configuration &amp; commissioning · Performance monitoring · Operations &amp; Maintenance (O&amp;M)" data-de="Solar-PV-Anlagenplanung · Netzgekoppelte Systeme · Zero-Export-Device (ZED)-Integration · Wechselrichter-Konfiguration &amp; Inbetriebnahme · Leistungsüberwachung · Wartung &amp; Betrieb (O&amp;M)">Solar PV system design · Grid-tied systems · Zero Export Device (ZED) integration · Inverter configuration &amp; commissioning · Performance monitoring · Operations &amp; Maintenance (O&amp;M)</div>
+      </div>
+
+      <div class="skill-row">
+        <div class="col-label" data-en="TECHNICAL TOOLS" data-de="TECHNISCHE TOOLS">TECHNICAL TOOLS</div>
+        <div class="skill-text" data-en="AutoCAD (2D) · MS Excel — Advanced (PivotTables, VLOOKUP / XLOOKUP, Macros, VBA) · MS Office" data-de="AutoCAD (2D) · MS Excel — Fortgeschritten (Pivot-Tabellen, VLOOKUP / XLOOKUP, Makros, VBA) · MS Office">AutoCAD (2D) · MS Excel — Advanced (PivotTables, VLOOKUP / XLOOKUP, Macros, VBA) · MS Office</div>
+      </div>
+
+      <div class="skill-row">
+        <div class="col-label" data-en="PROJECT MANAGEMENT" data-de="PROJEKTMANAGEMENT">PROJECT MANAGEMENT</div>
+        <div class="skill-text" data-en="Stakeholder coordination · Team leadership · Procurement &amp; vendor management · Timeline management · Risk mitigation · Site assessment" data-de="Stakeholder-Koordination · Teamführung · Einkauf &amp; Lieferantenmanagement · Terminplanung · Risikominderung · Standortbewertung">Stakeholder coordination · Team leadership · Procurement &amp; vendor management · Timeline management · Risk mitigation · Site assessment</div>
+      </div>
+
+      <div class="skill-row">
+        <div class="col-label" data-en="AUTOMATION" data-de="AUTOMATION">AUTOMATION</div>
+        <div class="skill-text" data-en="PLC programming · Ladder logic · Siemens &amp; Fanuc drives (CNC) · Control panel wiring" data-de="SPS-Programmierung · Kontaktplan · Siemens- &amp; Fanuc-Antriebe (CNC) · Schaltschrank-Verdrahtung">PLC programming · Ladder logic · Siemens &amp; Fanuc drives (CNC) · Control panel wiring</div>
+      </div>
+
+      <div class="skill-row">
+        <div class="col-label" data-en="LANGUAGES" data-de="SPRACHEN">LANGUAGES</div>
+        <div class="skill-text" data-en="English (fluent) · German (B1) · Hindi · Marathi" data-de="Englisch (fließend) · Deutsch (B1) · Hindi · Marathi">English (fluent) · German (B1) · Hindi · Marathi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="container">
+    <div class="sec-num">06</div>
+    <h2 class="sec-title reveal" data-en="Certificates" data-de="Zertifikate">Certificates</h2>
+
+    <div class="cert-list reveal">
+      <div class="cert-item">
+        <div class="entry-meta">2025</div>
+        <div>
+          <div class="cert-name" data-en="AutoCAD 2D Certification" data-de="AutoCAD-2D-Zertifizierung">AutoCAD 2D Certification</div>
+          <div class="cert-org">Design Studio</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="entry-meta">2025</div>
+        <div>
+          <div class="cert-name" data-en="Microsoft Excel — Advanced (VBA, Macros, PivotTables)" data-de="Microsoft Excel — Fortgeschritten (VBA, Makros, Pivot-Tabellen)">Microsoft Excel — Advanced (VBA, Macros, PivotTables)</div>
+          <div class="cert-org">Udemy — Kyle Pew</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="entry-meta">2024</div>
+        <div>
+          <div class="cert-name" data-en="Renewable Energy Technology Fundamentals" data-de="Grundlagen der erneuerbaren Energietechnologien">Renewable Energy Technology Fundamentals</div>
+          <div class="cert-org">University of Colorado Boulder — Coursera</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="entry-meta">2023</div>
+        <div>
+          <div class="cert-name" data-en="Smart India Hackathon — College Round Qualifier" data-de="Smart India Hackathon — College-Runde qualifiziert">Smart India Hackathon — College Round Qualifier</div>
+          <div class="cert-org" data-en="Ministry of Education, Govt. of India / AICTE" data-de="Ministerium für Bildung, Indien / AICTE">Ministry of Education, Govt. of India / AICTE</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="entry-meta">2020</div>
+        <div>
+          <div class="cert-name" data-en="Avhaan Adventure Camp — Grade A" data-de="Avhaan Adventure Camp — Note A">Avhaan Adventure Camp — Grade A</div>
+          <div class="cert-org">Guardian Giripremi Institute of Mountaineering</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="sec-num">07</div>
+    <h2 class="sec-title reveal" data-en="Contact" data-de="Kontakt">Contact</h2>
+
+    <p class="about-text reveal" style="margin-bottom: 32px;" data-en="If your team is hiring a Werkstudent or intern, or you'd simply like to talk about the energy transition, I'd love to hear from you." data-de="Wenn Ihr Team einen Werkstudenten oder Praktikanten sucht oder Sie einfach über die Energiewende sprechen möchten, freue ich mich auf Ihre Nachricht.">
+      If your team is hiring a Werkstudent or intern, or you'd simply like to talk about the energy transition, I'd love to hear from you.
+    </p>
+
+    <ul class="contact-list reveal">
+      <li>
+        <span class="label" data-en="EMAIL" data-de="E-MAIL">EMAIL</span>
+        <a href="mailto:piyushbaravkar04@gmail.com">piyushbaravkar04@gmail.com</a>
+      </li>
+      <li>
+        <span class="label" data-en="PHONE" data-de="TELEFON">PHONE</span>
+        <a href="tel:+4915510259255">+49 1551 0259255</a>
+      </li>
+      <li>
+        <span class="label">LINKEDIN</span>
+        <a href="https://linkedin.com/in/piyushbaravkar" target="_blank">linkedin.com/in/piyushbaravkar</a>
+      </li>
+      <li>
+        <span class="label" data-en="LOCATION" data-de="STANDORT">LOCATION</span>
+        <span data-en="Dortmund, NRW · Germany" data-de="Dortmund, NRW · Deutschland">Dortmund, NRW · Germany</span>
+      </li>
+      <li>
+        <span class="label">STATUS</span>
+        <span><span class="status-dot"></span><span data-en="Open to Werkstudent &amp; internship opportunities" data-de="Offen für Werkstudenten- &amp; Praktikumsstellen">Open to Werkstudent &amp; internship opportunities</span></span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div data-en="© 2026 Piyush Baravkar" data-de="© 2026 Piyush Baravkar">© 2026 Piyush Baravkar</div>
+    <div data-en="Built in Dortmund" data-de="Gebaut in Dortmund">Built in Dortmund</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const btnEN = document.getElementById('lang-en');
+  const btnDE = document.getElementById('lang-de');
+
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    btnEN.classList.toggle('active', lang === 'en');
+    btnDE.classList.toggle('active', lang === 'de');
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text !== null) el.innerHTML = text;
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      const ph = el.getAttribute('data-' + lang + '-placeholder');
+      if (ph !== null) el.placeholder = ph;
+    });
+    try { localStorage.setItem('preferredLang', lang); } catch(e) {}
+  }
+
+  btnEN.addEventListener('click', () => setLanguage('en'));
+  btnDE.addEventListener('click', () => setLanguage('de'));
+
+  (function initLang() {
+    let saved = null;
+    try { saved = localStorage.getItem('preferredLang'); } catch(e) {}
+    if (saved === 'en' || saved === 'de') {
+      setLanguage(saved);
+    } else {
+      const browserLang = (navigator.language || 'en').toLowerCase();
+      if (browserLang.startsWith('de')) setLanguage('de');
+    }
+  })();
+
+  document.getElementById('cv-download').addEventListener('click', (e) => {
+    e.preventDefault();
+    const lang = document.documentElement.lang;
+    alert(lang === 'de'
+      ? 'Ersetzen Sie den href in der HTML-Datei mit dem Pfad zu Ihrer Lebenslauf-PDF (z.B. href="Piyush_Baravkar_CV.pdf").'
+      : 'Replace the href in the HTML with the path to your CV PDF (e.g. href="Piyush_Baravkar_CV.pdf").');
+  });
+</script>
+
+</body>
+</html>
